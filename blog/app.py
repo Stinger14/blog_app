@@ -1,12 +1,18 @@
 from flask import Flask, jsonify, request
 
+from fastapi import FastAPI
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import PlainTextResponse
+
 from pydantic import ValidationError
+from pydantic.error_wrappers import ErrorList
 from werkzeug.wrappers import response
 
 from blog.commands import CreateArticleCommand
 from blog.queries import GetArticleByIDQuery, ListArticlesQuery
 
 app = Flask(__name__)
+# app = FastAPI()
 
 @app.route('/create-article/', methods=['POST'])
 def create_article():
@@ -31,11 +37,16 @@ def list_articles():
     return jsonify(records)
 
 
+#? Flask app errorhandler
 @app.errorhandler(ValidationError)
 def handle_validation_exception(error):
     response = jsonify(error.errors())
     response.status_code = 400
     return response
+
+# @app.exception_handler(RequestValidationError)
+# async def validation_exception_handler(request, exc):
+#     return PlainTextResponse(str(exc), status_code=400)
 
 if __name__ == '__main__':
     app.run()
