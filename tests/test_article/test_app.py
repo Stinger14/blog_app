@@ -59,6 +59,9 @@ def test_create_article_bad_request(client, data):
     GIVEN request data with invalid values or missing attributes
     WHEN endpoint /create-article/ is called
     THEN it should return status 400 and JSON body
+
+    Used pytest's parametrize option, which simplifies passing in 
+    multiple inputs to a single test.
     """
     response = client.post(
         '/create-article/',

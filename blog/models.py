@@ -11,6 +11,10 @@ class NotFound(Exception):
 
 
 class Article(BaseModel):
+    """
+    This is an Active Record - style model, which provides methods
+    for storing, fetching a single article, and listing all articles
+    """
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     author: EmailStr
     title: str
