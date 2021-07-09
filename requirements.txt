@@ -8,6 +8,7 @@ email-validator==1.1.2
 fastapi==0.65.1
 Flask==2.0.1
 fastapi
+requests
 idna==2.10
 iniconfig==1.1.1
 itsdangerous==2.0.1
