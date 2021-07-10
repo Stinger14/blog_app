@@ -5,7 +5,13 @@ name: Python application
 
 on:
   push:
+<<<<<<< HEAD
     branches: [ main ]
+=======
+    branches: [ ci-cd-br ]
+  pull_request:
+    branches: [ ci-cd-br ]
+>>>>>>> Update workflow pytest.
 
 jobs:
   build:
@@ -24,5 +30,10 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
+<<<<<<< HEAD
         pip install pytest flask pydantic[email] jsonchema requests fastapi
+=======
+        pip install pytest
+        export PYTHONPATH=blog
+>>>>>>> Update workflow pytest.
         pytest
