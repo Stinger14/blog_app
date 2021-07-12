@@ -26,4 +26,5 @@ jobs:
       run: |
         pip install pytest flask pydantic[email] jsonschema requests fastapi
         export PYTHONPATH=blog
+        FLASK_APP=blog/app.py python -m flask run
         pytest
